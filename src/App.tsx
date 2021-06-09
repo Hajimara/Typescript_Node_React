@@ -1,10 +1,8 @@
-import React, {useEffect} from 'react';
-import { createGlobalStyle } from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { createGlobalStyle } from 'styled-components';
 
-import { actions } from './store/reducers';
-import { RootState } from './storeHelper';
-
+import employeeHook from './hooks/employee.hook';
+import Employee from './components/Employee';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -20,17 +18,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-    const dispatch = useDispatch();
-    const employeeState = useSelector((store:RootState) => store.employees);
+  const { employeeState, handleEmployee } = employeeHook();
 
-    useEffect(() => {
-        dispatch(actions.handleEmployee.request(''));
-    }, [])
+  useEffect(() => {
+    handleEmployee();
+  }, []);
 
-    return (<>
-        <GlobalStyle />
-        {employeeState.map((employee, index) => <div key={index}>{employee.employee_name}</div>)}
-    </>);
+  return (<>
+            <GlobalStyle />
+            {employeeState.employees.map((employee, index) => <Employee {...employee} key={index} />)}
+          </>);
 }
 
 export default App;

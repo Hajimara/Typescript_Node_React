@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export interface IEmployee {
     id: string
@@ -8,12 +8,10 @@ export interface IEmployee {
     profile_image: string
 }
 
-export const callEmployees = (): Promise<IEmployee> => {
-    return axios.get('http://dummy.restapiexample.com/api/v1/employees').then(response => {
-        console.log(response);
-       if (response.status !== 200) {
-           throw new Error(response.statusText);
-       }
-       return response.data as Promise<IEmployee>
-    });
-}
+export const callEmployees = (): Promise<IEmployee> => axios.get('http://dummy.restapiexample.com/api/v1/employees').then((response) => {
+  console.log(response);
+  if (response.status !== 200) {
+    throw new Error(response.statusText);
+  }
+  return response.data as Promise<IEmployee>;
+});
