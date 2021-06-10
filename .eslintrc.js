@@ -16,5 +16,7 @@ module.exports = {
     'no-use-before-define': 0,
     'no-plusplus': 0,
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'no-unused-vars': 0,
+    'no-shadow': 0,
   },
 };

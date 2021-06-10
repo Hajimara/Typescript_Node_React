@@ -4,7 +4,11 @@ import {
   createReducer,
 } from 'typesafe-actions';
 
-import { IEmployee } from '../../apis/employee';
+import {
+  IRequest,
+  IResponse,
+  IError,
+} from '../../apis/employee';
 
 export const EMPLOYEE = {
   REQUEST: 'EMPLOYEES_REQUEST',
@@ -12,16 +16,12 @@ export const EMPLOYEE = {
   FAILURE: 'EMPLOYEES_FAILURE',
 };
 
-interface IRequest {
-
-}
-
-interface IResponse {
-    employees: IEmployee[]
-}
-
-interface IError {
-    message: string
+export interface IEmployee {
+  id: string
+  employee_name: string
+  employee_salary: string
+  employee_age: string
+  profile_image: string
 }
 
 export const handleEmployee = createAsyncAction(EMPLOYEE.REQUEST, EMPLOYEE.SUCCESS, EMPLOYEE.FAILURE)<IRequest, IResponse, IError>();

@@ -1,20 +1,17 @@
 import React from 'react';
-import { IEmployee } from '../../apis/employee';
+import { IEmployee } from '../../modules/employee/reducer';
 
 interface IProps extends IEmployee { }
 
 const Employee: React.FC<IProps> = ({
   employee_name, employee_salary, employee_age, profile_image,
-}: IEmployee) => {
-  console.log(employee_name, employee_salary, employee_age, profile_image);
-  return (
+}: IEmployee) => (
     <div>
       <span>{employee_name}</span>
       <span>{employee_salary}</span>
       <span>{employee_age}</span>
       <span>{profile_image}</span>
     </div>
-  );
-};
+);
 
 export default Employee;

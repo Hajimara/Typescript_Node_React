@@ -3,6 +3,8 @@ import { createGlobalStyle } from 'styled-components';
 
 import employeeHook from './hooks/employee.hook';
 import Employee from './components/Employee';
+import Activity from './components/Activity';
+import activityHook from './hooks/activity.hook';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -19,14 +21,20 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const { employeeState, handleEmployee } = employeeHook();
-
+  const { activities, fetchActivities } = activityHook();
   useEffect(() => {
     handleEmployee();
+    fetchActivities();
   }, []);
 
   return (<>
             <GlobalStyle />
-            {employeeState.employees.map((employee, index) => <Employee {...employee} key={index} />)}
+    <div>
+      Home!
+      {employeeState.employees.map((employee, index) => <Employee {...employee} key={index} />)}
+      <hr />
+      {activities.map((activity, index) => <Activity {...activity} key={index} />)}
+    </div>
           </>);
 }
 
